@@ -108,7 +108,7 @@ def register(uuid):
     doc = schema40.tostring(doc)
     landing_page = '{}/{}'.format(
         current_app.config.get('PIDSTORE_LANDING_BASE_URL'),
-        doi)
+        record['recid'])
     provider.register(url=landing_page,
                       doc=doc)
     db.session.commit()
