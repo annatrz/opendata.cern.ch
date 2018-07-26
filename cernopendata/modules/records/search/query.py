@@ -44,7 +44,8 @@ def cernopendata_search_factory(self, search, query_parser=None):
     def _default_parser(qstr=None):
         """Default parser that uses the Q() from elasticsearch_dsl."""
         if qstr:
-            return Q('query_string', query=qstr)
+            return Q('query_string', query=qstr) | \
+                Q('match_phrase_prefix', _all=qstr)
         return Q()
 
     query_string = request.values.get('q')
